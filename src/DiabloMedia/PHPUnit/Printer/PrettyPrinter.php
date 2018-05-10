@@ -34,6 +34,19 @@ class PrettyPrinter extends \PHPUnit_TextUI_ResultPrinter implements \PHPUnit_Fr
         if (!$this->debug) {
             parent::startTest($test);
         }
+        
+        if ($this->debug) {
+            foreach ($this->timeColors as $threshold => $color) {
+                if ($time >= $threshold) {
+                    $timeColor = $color;
+                    break;
+                }
+            }
+            $this->write('Start: ');
+            $this->writeWithColor($timeColor, '['.number_format($time, 3).'s]', false);
+            $this->write(' ');
+            $this->writeWithColor('fg-cyan', \PHPUnit_Util_Test::describe($test), true);
+        
     }
 
     public function endTest(\PHPUnit_Framework_Test $test, $time)
