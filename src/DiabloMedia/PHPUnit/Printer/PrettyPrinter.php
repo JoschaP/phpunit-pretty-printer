@@ -43,8 +43,6 @@ class PrettyPrinter extends \PHPUnit_TextUI_ResultPrinter implements \PHPUnit_Fr
                 }
             }
             $this->write('Start: ');
-            $this->writeWithColor($timeColor, '['.number_format($time, 3).'s]', false);
-            $this->write(' ');
             $this->writeWithColor('fg-cyan', \PHPUnit_Util_Test::describe($test), true);
         
     }
